@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="Static/css/index.css">
+</head>
+<body>
+    <div class="quiz">
+        <h2 id="question"></h2>
+        <form id="quiz-form">
+            <input type="text" id="answer" />
+            <button type="submit">Rispondi</button>
+        </form>
+        <h2 id="result" style="display: none;"></h2>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "Qual è la capitale dell'Italia", a: "roma" },
+            { q: "Come si chiama Scanni", a: "frank" },
+            { q: "Quanto fa 2 + 2", a: "4" },
+            { q: "Chi ha scritto la Divina Commedia", a: "dante" },
+            { q: "Qual è il colore del cielo di giorno", a: "blu" }
+        ];
+
+        let index = 0, score = 0;
+        const questionEl = document.getElementById("question");
+        const form = document.getElementById("quiz-form");
+        const input = document.getElementById("answer");
+        const resultEl = document.getElementById("result");
+
+        function loadQuestion() {
+        questionEl.textContent = index < questions.length && questions[index].q;
+            input.value = "";
+        }
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            if (input.value.toLowerCase().trim() === questions[index].a) score++;
+            if (++index < questions.length) loadQuestion();
+            else {
+                document.querySelector(".quiz").innerHTML = "<h2>Quiz finito! Punteggio: " + score + "</h2>";
+            }
+        };
+
+        loadQuestion();
+    </script>
+</body>
+</html>
