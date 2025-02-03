@@ -38,7 +38,7 @@
 
         form.onsubmit = (e) => {
             e.preventDefault();
-            if (input.value.toLowerCase().trim() === questions[index].a){score++;}else{ document.querySelector(".quiz").innerHTML = "Risposta errata. La rispsota corretta era: " + questions[index].a }
+            if (input.value.toLowerCase().trim() === questions[index].a){score++;}else{ document.querySelector(".quiz").innerHTML += "Risposta errata. La rispsota corretta era: " + questions[index].a }
             
             if (++index < questions.length) loadQuestion();
             else {
